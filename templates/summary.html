@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Transcript Summarizer</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa; /* Light background for a clean look */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px; /* Increased max-width for a wider container */
+            width: 100%;
+            border-top: 5px solid #007bff; /* Blue top border */
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #0056b3; /* Dark blue for heading */
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            background-color: #f1f9ff; /* Light blue input background */
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #5A67D8; /* Purple border on focus */
+        }
+
+        button {
+            background-color: #007bff;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Summary Box */
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #0056b3;
+        }
+
+        textarea {
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #00D8FF;
+            background-color: #f1f9ff; /* Light blue background for textarea */
+            color: #333;
+            font-size: 1rem;
+            margin-top: 10px;
+            resize: horizontal; /* Allow resizing horizontally */
+            height: 150px; /* Adjusted height for horizontal shape */
+            width: 100%; /* Full width of the container */
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            border-color: #5A67D8; /* Purple border on focus */
+        }
+
+        textarea::placeholder {
+            color: #7dd3fa; /* Light blue placeholder */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>YouTube Transcript Summarizer</h1>
+        <form id="transcriptForm">
+            <label for="video_id">YouTube Video ID:</label>
+            <input type="text" id="video_id" name="video_id" placeholder="Enter video ID" required>
+            <button type="submit">Get Summary</button>
+        </form>
+        <h2>Summary:</h2>
+        <textarea id="summary" readonly placeholder="The summary will appear here..."></textarea>
+    </div>
+
+    <script>
+        document.getElementById('transcriptForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const videoId = document.getElementById('video_id').value;
+
+            try {
+                const response = await fetch('/summarize', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ video_id: videoId })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                document.getElementById('summary').value = data.summary || 'No summary available';
+            } catch (error) {
+                document.getElementById('summary').value = 'Error fetching summary: ' + error.message;
+            }
+        });
+    </script>
+</body>
+
+</html>

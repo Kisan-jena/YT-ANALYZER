@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+#main-body {
+    min-height: 100vh;
+    background-color: rgb(255, 255, 255);
+}
+
+/*            NAVIGATION BAR                   */
+
+#navbar {
+    /* align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center; */
+    border-right: 1px solid rgb(0, 0, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 320px; /* Increased width */
+    background-color: rgb(255, 255, 255);
+    padding: 10px 14px;
+}
+
+/* logo part */
+#logo-name {
+    /* background-color: #00D8FF; */
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center; 
+
+    display: flex;
+    align-items: center;
+}
+#logo-image {
+    display: flex;
+    min-width: 45px;
+    min-height: 45px;
+}
+#logo-image img {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.logo_name {
+    font-size: 24px; /* Increased font size */
+    font-weight: 600;
+    margin-left: 14px;
+}
+
+/* Menu items */
+.menu-item {
+    /* align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center; */
+    /* background-color: #ffffff; */
+
+    margin-top: 200px;
+    height: 625px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.menu-item li {
+    list-style: none;
+}
+.menu-item li a {
+    height: 65px;
+    align-items: center;
+    display: flex;
+    text-decoration: none;
+}
+.menu-item li a i {
+    font-size: 26px; /* Increased font size */
+    min-width: 60px; /* Adjusted width */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(0, 0, 0);
+}
+.link-name {
+    font-size: 26px; /* Increased font size */
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+}
+
+/* Options of features */
+.sub-menu {
+    display: none;
+    padding-left: 20px;
+}
+.sub-menu li a {
+    height: 40px;
+}
+.sub-menu li a i {
+    font-size: 22px; /* Increased font size */
+}
+.sub-menu.show {
+    display: block;
+}
+
+/* Switch button */
+.logout-Dark-Mode {
+    padding: 8px;
+    width: 280px;
+    border-top: 1px solid rgb(91, 90, 90);
+}
+
+#mode-changer {
+    display: flex;
+    align-items: center;
+}
+.mode-toggle {
+    position: absolute;
+    right: 14px;
+    height: 50px;
+    min-width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.switch {
+    background-color: rgb(195, 192, 192);
+    position: relative;
+    display: inline-block;
+    height: 22px;
+    width: 40px;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+}
+.switch:before {
+    background-color: black;
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 3px;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    transition: left 0.3s;
+}
+
+/* --------------------------END of Nav bar--------------------------- */
+
+/*                   All Hover effect                        */
+.nav-links li:hover i,
+.nav-links li a:hover .link-name {
+    color: rgb(63, 209, 238);
+}
+.nav-links li a:hover:before {
+    position: absolute;
+    content: "";
+    left: -7px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: rgb(13, 19, 13);
+}
+
+/*                        Dark Mode Styles                     */
+body.dark-mode #logo-image {
+    background-color: rgb(33, 33, 33);
+}
+body.dark-mode {
+    background-color: rgb(18, 18, 18);
+    color: white;
+}
+body.dark-mode #navbar {
+    background-color: rgb(33, 33, 33);
+}
+body.dark-mode .menu-item li a i {
+    color: rgb(255, 255, 255);
+}
+body.dark-mode .link-name {
+    color: rgb(255, 255, 255);
+}
+body.dark-mode .switch {
+    background-color: rgb(100, 100, 100);
+}
+body.dark-mode .switch:before {
+    left: 22px;
+    background-color: rgb(255, 255, 255);
+}
+
+
+/* link area Area */
+#content-area {
+    margin-left: 320px; /* Matches the navbar width */
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: flex-start; /* Aligns content to the top */
+}
+
+/* Left content area (YouTube Analyzer form) */
+#left-content {
+    width: 600px; /* Doubled the width */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the form and input fields */
+form {
+    text-align: left;
+}
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 16px;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Adjustments for Dark Mode */
+body.dark-mode #left-content {
+    background-color: #333;
+    color: white;
+}
+
+body.dark-mode h1 {
+    color: #ffffff;
+}
+
+body.dark-mode form label{
+    color: #ffffff;
+}

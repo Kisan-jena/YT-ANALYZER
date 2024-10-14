@@ -1,0 +1,705 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+#header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+#navbar {
+    /* position: absolute; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 2rem;
+}
+
+#logo {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+#nav-part1 ul {
+    list-style: none;
+    /* align-content: center;
+    justify-content: center;  */
+    align-items: center;
+    justify-items: center;
+    display: flex;
+    gap: 4rem;
+    padding: 0;
+    margin: 0;
+}
+
+#nav-part1 li {
+    /* text-align: center;
+    justify-items: center;
+    align-items: center;
+    justify-content: center; */
+    /* position: relative; */
+    align-content: center;
+    height:80px;
+    /* background-color: #038d21; */
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 26px;
+}
+
+#nav-part1 a {
+    color: inherit; /* Inherit color from parent (nav-part1 li) */
+    text-decoration: none; /* Remove underline from links */
+}
+
+#nav-part1 li:hover {
+    /* padding: 5px 5px; 
+    background-color: #5A67D8; */
+    color: #5A67D8;
+    padding-bottom: 0px;
+    border-bottom: 0.1px solid;
+}
+
+#nav-part2 {
+    display: flex;
+    gap: 1rem;
+}
+
+#btn1, #btn3 {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1.5px solid black;
+    font-size: 16px;
+    font-weight: 200;
+    color: #000;
+    background: none;
+}
+
+#btn2 {
+    font-weight: lighter;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #5A67D8;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+}
+
+#main {
+    background: linear-gradient(135deg, #F3F4F6, #E2E8F0);
+    padding: 4rem 2rem;
+}
+
+#hero {
+    text-align: left;
+    color: #2D3748;
+    max-width: 600px;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+#line1 {
+    font-size: 48px;
+}
+
+#line2 {
+    font-size: 22px;
+    font-weight: lighter;
+    margin-top: 1rem;
+}
+
+#buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+#start-free-trial, #view-demo {
+    font-weight: lighter;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+}
+
+#start-free-trial {
+    background-color: #5A67D8;
+}
+
+#view-demo {
+    background-color: #A0AEC0;
+}
+
+#features {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #ffffff;
+}
+
+.animate-character {
+    text-transform: uppercase;
+    background-image: linear-gradient(
+        -225deg,
+        #b3b2b9 0%,
+        #248a8f 29%,
+        #c760de 67%,
+        #fff800 100%
+    );
+    
+    background-size: 200% auto;
+    color: #ffffff;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    display: inline-block;
+    font-size: 58px;
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.animate-character::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 4px solid;
+    border-image: linear-gradient(
+        -225deg,
+        #2601f4 0%,
+        #ed0707 29%,
+        #038d21 67%,
+        #fff800 100%
+    ) 1;
+    border-radius: 10px;
+    animation: borderclip 2s linear infinite;
+}
+
+@keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
+}
+
+@keyframes borderclip {
+    to {
+        border-image-source: linear-gradient(
+            -225deg,
+            #fff800 0%,
+            #c760de 29%,
+            #248a8f 67%,
+            #b3b2b9 100%
+        );
+    }
+}
+
+#animate {
+    background-color: #ffffff;
+}
+
+#features-list {
+    /* background-color: #248a8f; */
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    /* flex-wrap: wrap; */
+    margin-top: 20px;
+}
+
+.feature {
+    /* box-shadow: 10px 10px 20px rgb(118, 123, 124); */
+    color: #140d0d;
+    font-size: x-large;
+    /* background-color: #ffffff; */
+    /* padding: 20px; */
+    /* width: 320px;
+    height: 420px; */
+    border-radius: 75px;
+    text-align: center;
+}
+
+.img {
+    box-shadow: 10px 10px 20px rgb(209, 204, 204);
+    /* margin: 10px; */
+    border-radius: 15px;
+    background: linear-gradient(135deg, #e2e4e8, #eef6ff);
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+#about-us {
+    width: 100%;
+    height: 280px;
+    background-color: #F3F4F6;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    padding: 2rem 2rem;
+}
+
+#about-us h2 {
+    font-size: 36px;
+    margin-bottom: 1rem;
+}
+
+#about-us p {
+    font-size: 18px;
+    color: #2D3748;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Hover effect for the feature images and h4 elements */
+.feature:hover .img {
+    box-shadow: 0px 0px 15px 5px rgba(46, 46, 46, 0.7);
+    transform: scale(1.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature:hover h4 {
+    color:rgba(2, 2, 2, 0.7);
+    text-shadow: 0 0 8px rgba(54, 52, 99, 0.7);
+}
+
+#theme-toggle {
+    padding: 8px 8px;
+    border-radius: 10px;
+    border: 1.5px solid black;
+    font-size: 20px;
+    cursor: pointer;
+    color: #0c0a0a; /* Dark color for light mode */
+}
+
+body.dark-mode #theme-toggle {
+    color: #ffffff; /* Light color for dark mode */
+}
+
+
+
+
+
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #0e1321; /* Dark background color */
+    color: #d1d1d1; /* Light text color */
+}
+
+body.dark-mode #header {
+    background-color: #1b1f2f; /* Darker header background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Darker shadow */
+}
+
+body.dark-mode #navbar {
+    background-color: #1b1f2f; /* Darker navbar background */
+    color: #d1d1d1; /* Light text color for navbar */
+}
+
+body.dark-mode #nav-part1 li:hover {
+    color: #38b2ac; /* Teal color on hover */
+    border-bottom: 0.1px solid #38b2ac; /* Teal underline */
+}
+
+body.dark-mode #btn1, 
+body.dark-mode #btn3 {
+    color: #ffffff; /* Light text color for buttons */
+    background-color: #282c34; /* Dark button background */
+    border-color: #38b2ac; /* Teal border color */
+}
+
+body.dark-mode #btn1:hover, 
+body.dark-mode #btn3:hover {
+    background-color: #38b2ac; /* Teal background on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+body.dark-mode #btn2 {
+    background-color: #38b2ac; /* Teal button background */
+    color: #ffffff; /* White text */
+}
+
+body.dark-mode #main {
+    background: linear-gradient(135deg, #1b1f2f, #2a2f40); /* Darker gradient background */
+}
+
+body.dark-mode #hero {
+    color: #ffffff; /* White text for hero section */
+}
+
+body.dark-mode #line1 {
+    color: #ffffff; /* White text for line1 */
+}
+
+body.dark-mode #line2 {
+    color: #d1d1d1; /* Light gray text for line2 */
+}
+
+body.dark-mode #start-free-trial, 
+body.dark-mode #view-demo {
+    background-color: #90f7f2; /* Teal button background */
+    color: #000000; /* Black text */
+}
+
+/* Updated Feature Animation and Hover Effects */
+body.dark-mode .feature h4 {
+    color: #d1d1d1; /* Light color for feature titles */
+}
+
+body.dark-mode .feature:hover h4 {
+    color: #38b2ac; /* Teal color on hover */
+    text-shadow: 0 0 8px #38b2ac; /* Teal glow effect */
+}
+
+body.dark-mode .img {
+    background: linear-gradient(135deg, #1b1f2f, #2a2f40); /* Darker gradient for images */
+    box-shadow: 0px 0px 15px 5px rgba(57, 54, 54, 0.7); /* Teal shadow */
+}
+
+body.dark-mode #about-us {
+    background-color: #1b1f2f; /* Dark background for about us section */
+    color: #d1d1d1; /* Light text color */
+}
+
+body.dark-mode #about-us p {
+    background-color: #1b1f2f; /* Dark background for about us section */
+    color: #d1d1d1; /* Light text color */
+}
+
+/* Feature List Hover Effects */
+body.dark-mode #features-list .feature {
+    color: #d1d1d1; /* Light color for feature before hover */
+}
+
+body.dark-mode #features-list .feature:hover {
+    color: #ffffff; /* Teal color on hover */
+}
+body.dark-mode #features {
+    background:  #000000; /* Very dark background for features section */
+    color: #ffffff; /* White text color */
+}
+
+body.dark-mode #features h2 {
+    color: #ff0000; /* Teal color for the "OUR FEATURES" text */
+    text-shadow: 0 0 8px #ffffff; /* Teal glow effect for the text */
+    border: 2px solid #38b2ac; /* Teal border around the text */
+    background: transparent; /* Make sure the background is transparent */
+}
+
+body.dark-mode .feature:hover .img {
+    box-shadow: 0px 0px 15px 5px rgba(66, 216, 247, 0.7);
+    transform: scale(1.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .feature:hover h4 {
+    color:rgba(66, 216, 247, 0.7);
+    text-shadow: 0 0 8px rgba(54, 52, 99, 0.7);
+}
+
+body.dark-mode #animate {
+    background-color:  #000000;
+}
+
+
+
+/* for flash card */
+#flash-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.flash {
+    display: flex;
+    align-items: center;
+    background-color: #ffd700; /* A vibrant background color */
+    color: #333; /* Text color */
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    animation: fade-in 0.5s ease-in-out;
+}
+
+.flash i {
+    margin-right: 10px; /* Spacing between icon and message */
+    font-size: 1.5em;
+}
+
+.flash.warning {
+    background-color: #f4d03f; /* Example warning color */
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*                               for email and logout                  */
+/* Common styles for buttons */
+#btn1, #btn3, #user-email, #logout {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1.5px solid black;
+    font-size: 16px;
+    font-weight: 200;
+    color: #000;
+    background: none;
+    text-decoration: none; /* Remove underline from links */
+    cursor: pointer;
+}
+
+/* Hover effects for light mode */
+#user-email:hover, #logout:hover,
+#btn1:hover, #btn3:hover {
+    background-color: #5A67D8; /* Button background on hover */
+    color: #ffffff; /* Text color on hover */
+}
+
+/* Dark Mode Styles for Logout and Email */
+body.dark-mode #user-email, 
+body.dark-mode #logout {
+    color: #ffffff; /* Light text color for buttons */
+    background-color: #282c34; /* Dark button background */
+    border-color: #38b2ac; /* Teal border color */
+}
+
+/* Dark Mode Hover Styles for Logout and Email */
+body.dark-mode #user-email:hover,
+body.dark-mode #logout:hover {
+    background-color: #38b2ac; /* Teal background on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+/*        light to dark mode changer          */
+#theme-toggle {
+    padding: 8px 8px;
+    border-radius: 10px;
+    border: 1.5px solid black;
+    font-size: 20px;
+    cursor: pointer;
+    color: #0c0a0a; /* Dark color for light mode */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the theme toggle icon */
+#theme-toggle:hover {
+    background-color: #5A67D8; /* Light background on hover */
+    color: #ffffff; /* Change icon color on hover */
+}
+
+/* Dark mode icon styles */
+body.dark-mode #theme-toggle {
+    color: #ffffff; /* Light color for dark mode */
+}
+
+/* Dark mode hover effect for the theme toggle icon */
+body.dark-mode #theme-toggle:hover {
+    background-color: #38b2ac; /* Darker background on hover */
+    color: white; /* Teal color on hover */
+}
+
+/*            hover effect for view demo and get started                       */
+
+/* Light Mode Hover Effects */
+#start-free-trial:hover, #view-demo:hover {
+    background-color: #3918f4;
+    color: whitesmoke;
+    opacity: 0.9; /* Slightly transparent on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+#view-demo:hover {
+    background-color: #ddd5f2;
+    color: rgb(9, 8, 8);
+    opacity: 0.9; /* Slightly transparent on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Dark Mode Hover Effects */
+body.dark-mode #start-free-trial:hover,
+body.dark-mode #view-demo:hover {
+    opacity: 0.9; /* Slightly transparent on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Specific Hover Effects for Dark Mode Buttons */
+body.dark-mode #start-free-trial:hover {
+    background-color: #7dd3fa; /* Darker background color on hover */
+    color: #000000; /* White text color */
+}
+
+body.dark-mode #view-demo:hover {
+    background-color:#7dd3fa; /* Darker background color on hover */
+    color: #000000; /* Black text color */
+}
+
+/*                 FLASH CARDS               */
+#flash-container {
+    position: fixed;
+    top: 60px;
+    right: 40%;
+    z-index: 1000;
+    width: 300px;
+}
+
+.flash {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+.flash-success {
+    background-color: #2d7a54; /* Muted Green */
+    color: #ffffff; /* White text for contrast */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Padding for better spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition */
+}
+
+.flash-danger {
+    background-color: #c0392b; /* Muted Red */
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.flash-warning {
+    background-color: #e67e22; /* Muted Orange */
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.flash-info {
+    background-color: #3498db; /* Muted Blue */
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease-in-out;
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+
+
+
+/* Loader Styling */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9; /* Light background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999; /* Ensures loader is above all other elements */
+}
+
+.loader-spinner {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Fade-out effect for the loader */
+.fade-out {
+    animation: fadeOut 1s ease-out forwards;
+}
+
+/* Keyframe for fade-out animation */
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Main content hidden initially */
+#main-content {
+    display: none;
+}
+
+
+
+
+
+
+
+
+.right-section {
+    width: auto; /* Adjust width to fit the image size */
+    position: absolute;
+    right: 120px; /* Shift the image to the left */
+    top: calc(50% - 130px); /* Move the image up */
+    transform: translateY(-50%); /* Center it vertically relative to the new top position */
+    z-index: 0; /* Push the image behind the content */
+}
+
+.hero-image {
+    background-color: #038d21;
+    width: 100%;
+    max-width: 550px; /* Adjust image size as needed */
+    height: auto;
+    border-radius: 20px; /* Add a border radius */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add a soft shadow */
+}
+
+
+.no-underline {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Make sure it inherits the text color from the parent */
+}
+
+/* If you want to ensure that all <h4> links don't have underlines */
+h4 a {
+    text-decoration: none; /* Remove underline for all links in h4 */
+    color: inherit; /* Use the inherited color */
+}
+

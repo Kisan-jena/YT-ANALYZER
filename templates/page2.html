@@ -1,0 +1,118 @@
+<!-- AFTER CLICKING GET STARTED 3 (chaneel analyzer) -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAIN PAGE</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='page2.css') }}">
+</head>
+<body>
+    <div id="main-body">
+        <div id="navbar">
+            <!-- Logo and name -->
+            <div id="logo-name">
+                <div id="logo-image">
+                    <img src="https://plus.unsplash.com/premium_photo-1681487769650-a0c3fbaed85a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YW5hbHlzaXN8ZW58MHx8MHx8fDA%3D" alt="logo">
+                </div>
+                <span class="logo_name">ANALYSER</span>
+            </div>
+
+            <!-- Menu 1 (home, profile, features, feedback) -->
+            <div class="menu-item">
+                <ul class="nav-links">
+                    <li>
+                        <a href="{{ url_for('dashboard') }}">
+                            <i class="ri-home-4-line"></i>
+                            <span class="link-name">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('profile') }}">
+                            <i class="ri-profile-line"></i>
+                            <span class="link-name">Profile</span>
+                        </a>
+                    </li>
+                    <li id="features">
+                        <a href="#">
+                            <i class="ri-arrow-right-double-line"></i>
+                            <span class="link-name">Features</span>
+                        </a>
+                        <!-- Menu 2, Option of features -->
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="{{ url_for('summary') }}">
+                                    <i class="ri-file-list-line"></i>
+                                    <span class="link-name">Summary</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('sentiment') }}">
+                                    <i class="ri-emotion-line"></i>
+                                    <span class="link-name">Sentiment</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('page2') }}">
+                                    <i class="ri-bar-chart-line"></i>
+                                    <span class="link-name">Growth</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('titlepage') }}">
+                                    <i class="ri-star-line"></i>
+                                    <span class="link-name">Recommend</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ri-feedback-line"></i>
+                            <span class="link-name">Feedback</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Menu 3, Logout and Dark Mode -->
+                <ul class="logout-Dark-Mode">
+                    <li>
+                        <a href="#">
+                            <i class="ri-logout-box-r-line"></i>
+                            <span class="link-name">Logout</span>
+                        </a>
+                    </li>
+                    <li id="mode-changer">
+                        <a href="#">
+                            <i class="ri-moon-line"></i>
+                            <span class="link-name">Dark Mode</span>
+                        </a>
+                        <div class="mode-toggle">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Link area -->
+        <div id="content-area">
+            <!-- Left vacant space for YouTube Channel Analyzer form -->
+            <div id="left-content">
+                <h1>YouTube Channel Analyzer</h1>
+                <form action="{{ url_for('search') }}" method="POST">
+                    <label for="channel_url">Enter YouTube Channel or Video URL:</label>
+                    <input type="text" id="channel_url" name="channel_url" placeholder="YouTube URL" required>
+                    <input type="submit" value="Analyze">
+                </form>
+            </div>
+            <!-- Additional content can go here -->
+        </div>
+
+        <script src="{{ url_for('static', filename='page2.js') }}"></script>
+    </div>    
+</body>
+</html>

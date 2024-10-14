@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='landing_page.css') }}">
+</head>
+<body>
+
+    <!-- Loader Container -->
+    <div id="loader">
+        <div class="loader-spinner"></div>
+        <h2>Loading...</h2>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" style="display: none;">
+        <div id="header">
+            <div id="flash-container">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flash flash-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div id="navbar">
+                <div id="logo">ANALYSER</div>
+
+                <div id="nav-part1">
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about-us">About us</a></li>
+                        <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                    </ul>
+                </div>
+
+                <div id="nav-part2">
+                    <i id="theme-toggle" class="ri-moon-line"></i> <!-- Dark/Light Mode Toggle -->                
+                    {% if 'user_id' in session %}
+                        <a href="#"><button id="user-email">{{ session['user_email'] }}</button></a>
+                        <a href="{{ url_for('logout') }}"><button id="logout">Logout</button></a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}"><button id="btn1">Login</button></a>
+                        <a href="{{ url_for('signup') }}"><button id="btn3">Sign Up</button></a>
+                    {% endif %}
+                    <a href="{{ url_for('get_started') }}"><button id="start-free-trial">GET STARTED</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div id="main">
+            <div id="hero">
+                <h1 id="line1">Boost and Enhance <br>your productivity <br> by joining us</h1>
+                <h4 id="line2">Click get started button to start your journey with us.</h4>
+                
+                <div id="buttons">
+                    <a href="{{ url_for('get_started') }}"><button id="start-free-trial">GET STARTED</button></a>
+                    <button id="view-demo">VIEW DEMO</button>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <img src="{{ url_for('static', filename='image.png') }}" alt="Person holding tablet" class="hero-image">
+            </div>
+            
+        </div>
+
+        <div id="features">
+            <div id="animate">
+                <h3 class="animate-character">OUR FEATURES</h3>
+            </div>
+
+            <div id="features-list">
+                <div class="feature">
+                    <a href="{{ url_for('sentiment') }}">
+                        <img class="img" src="{{ url_for('static', filename='sentiment.jpg') }}" alt="Feature 1">
+                    </a>
+                    <h4><a href="{{ url_for('sentiment') }}">Sentiment Analysis</a></h4>
+                </div>
+                <div class="feature">
+                    <a href="{{ url_for('page2') }}">
+                        <img class="img" src="{{ url_for('static', filename='channel.jpg') }}" alt="Feature 2">
+                    </a>
+                    <h4><a href="{{ url_for('page2') }}">Channel Information</a></h4>
+                </div>
+                <div class="feature">
+                    <a href="{{ url_for('titlepage') }}">
+                        <img class="img" src="{{ url_for('static', filename='title.png') }}" alt="Feature 3">
+                    </a>
+                    <h4><a href="{{ url_for('titlepage') }}">Title Recommendation</a></h4>
+                </div>
+                <div class="feature">
+                    <a href="{{ url_for('summary') }}">
+                        <img class="img" src="{{ url_for('static', filename='summarizer.png') }}" alt="Feature 4">
+                    </a>
+                    <h4><a href="{{ url_for('summary') }}">Video Summarizer</a></h4>
+                </div>
+            </div>
+            
+            
+
+        </div>
+
+        <div id="about-us">
+            <h2>About Us</h2>
+            <p>
+                Welcome to our platform! We specialize in providing advanced tools for analyzing and enhancing your content.
+                Our features are designed to help you grow and succeed in your digital endeavors. Stay tuned as we continue
+                to innovate and offer new solutions to meet your needs.
+            </p>
+        </div>
+    </div>
+
+    <!-- Include the external JavaScript file -->
+    <script src="{{ url_for('static', filename='landing_page.js') }}"></script>
+
+    <!-- JavaScript to control the loader -->
+    <script>
+        window.addEventListener('load', function () {
+            // Hide the loader
+            const loader = document.getElementById('loader');
+            loader.classList.add('fade-out');
+            
+            // Show the main content after loader fades out
+            setTimeout(() => {
+                loader.style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            }, 1000); // Delay to allow fade-out animation
+        });
+    </script>
+</body>
+</html>

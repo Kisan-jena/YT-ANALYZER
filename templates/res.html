@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Statistics</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style> 
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .main-content {
+            flex: 2;
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .banner {
+            width: calc(100% - 40px);
+            height: auto;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .banner img {
+            width: 100%;
+            height: auto;
+        }
+        .channel-name {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .stats-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .stats_table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .stats_table th, .stats_table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .stats_table th {
+            background-color: #f4f4f4;
+        }
+        .profile-pic {
+            margin-left: 20px;
+            text-align: center;
+        }
+        .profile-pic img {
+            border-radius: 50%;
+            max-width: 150px;
+            height: auto;
+        }
+        .chart-container {
+            margin: 20px 0;
+        }
+        .chart-container canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+        .sidebar {
+            flex: 1;
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .sidebar ul li img {
+            width: 120px;
+            height: 90px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #1a73e8;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+
+        #main-body {
+            min-height: 100vh;
+            background-color: rgb(255, 255, 255);
+        }
+
+        /*            NAVIGATION BAR                   */
+
+        #navbar {
+            /* align-items: center;
+            justify-content: center;
+            align-content: center;
+            justify-items: center; */
+            border-right: 1px solid rgb(0, 0, 0);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 320px; /* Increased width */
+            background-color: rgb(255, 255, 255);
+            padding: 10px 14px;
+        }
+
+        /* logo part */
+        #logo-name {
+            /* background-color: #00D8FF; */
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+            justify-items: center; 
+
+            display: flex;
+            align-items: center;
+        }
+        #logo-image {
+            display: flex;
+            min-width: 45px;
+            min-height: 45px;
+        }
+        #logo-image img {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .logo_name {
+            font-size: 24px; /* Increased font size */
+            font-weight: 600;
+            margin-left: 14px;
+        }
+
+        /* Menu items */
+        .menu-item {
+            /* align-items: center;
+            justify-content: center;
+            align-content: center;
+            justify-items: center; */
+            /* background-color: #ffffff; */
+
+            margin-top: 200px;
+            height: 625px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .menu-item li {
+            list-style: none;
+        }
+        .menu-item li a {
+            height: 65px;
+            align-items: center;
+            display: flex;
+            text-decoration: none;
+        }
+        .menu-item li a i {
+            font-size: 26px; /* Increased font size */
+            min-width: 60px; /* Adjusted width */
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(0, 0, 0);
+        }
+        .link-name {
+            font-size: 26px; /* Increased font size */
+            font-weight: 400;
+            color: rgb(0, 0, 0);
+        }
+
+        /* Options of features */
+        .sub-menu {
+            display: none;
+            padding-left: 20px;
+        }
+        .sub-menu li a {
+            height: 40px;
+        }
+        .sub-menu li a i {
+            font-size: 22px; /* Increased font size */
+        }
+        .sub-menu.show {
+            display: block;
+        }
+
+        /* Switch button */
+        .logout-Dark-Mode {
+            padding: 8px;
+            width: 280px;
+            border-top: 1px solid rgb(91, 90, 90);
+        }
+
+        #mode-changer {
+            display: flex;
+            align-items: center;
+        }
+        .mode-toggle {
+            position: absolute;
+            right: 14px;
+            height: 50px;
+            min-width: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .switch {
+            background-color: rgb(195, 192, 192);
+            position: relative;
+            display: inline-block;
+            height: 22px;
+            width: 40px;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+        .switch:before {
+            background-color: black;
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 3px;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            transition: left 0.3s;
+        }
+
+        /* --------------------------END of Nav bar--------------------------- */
+
+        /*                   All Hover effect                        */
+        .nav-links li:hover i,
+        .nav-links li a:hover .link-name {
+            color: rgb(63, 209, 238);
+        }
+        .nav-links li a:hover:before {
+            position: absolute;
+            content: "";
+            left: -7px;
+            height: 5px;
+            width: 5px;
+            border-radius: 50%;
+            background-color: rgb(13, 19, 13);
+        }
+
+        /*                        Dark Mode Styles                     */
+        body.dark-mode #logo-image {
+            background-color: rgb(33, 33, 33);
+        }
+        body.dark-mode {
+            background-color: rgb(18, 18, 18);
+            color: white;
+        }
+        body.dark-mode #navbar {
+            background-color: rgb(33, 33, 33);
+        }
+        body.dark-mode .menu-item li a i {
+            color: rgb(255, 255, 255);
+        }
+        body.dark-mode .link-name {
+            color: rgb(255, 255, 255);
+        }
+        body.dark-mode .switch {
+            background-color: rgb(100, 100, 100);
+        }
+        body.dark-mode .switch:before {
+            left: 22px;
+            background-color: rgb(255, 255, 255);
+        }
+
+
+/* link area Area */
+#content-area {
+    margin-left: 320px; /* Matches the navbar width */
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: flex-start; /* Aligns content to the top */
+}
+
+/* Left content area (YouTube Analyzer form) */
+#left-content {
+    width: 600px; /* Doubled the width */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the form and input fields */
+form {
+    text-align: left;
+}
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 16px;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Adjustments for Dark Mode */
+body.dark-mode #left-content {
+    background-color: #333;
+    color: white;
+}
+
+body.dark-mode h1 {
+    color: #ffffff;
+}
+
+body.dark-mode form label{
+    color: #ffffff;
+}
+
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <!-- Logo and name -->
+        <div id="logo-name">
+            <div id="logo-image">
+                <img src="https://plus.unsplash.com/premium_photo-1681487769650-a0c3fbaed85a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YW5hbHlzaXN8ZW58MHx8MHx8fDA%3D" alt="logo">
+            </div>
+            <span class="logo_name">ANALYSER</span>
+        </div>
+
+        <!-- Menu 1 (home, profile, features, feedback) -->
+        <div class="menu-item">
+            <ul class="nav-links">
+                <li>
+                    <a href="{{ url_for('dashboard') }}">
+                        <i class="ri-home-4-line"></i>
+                        <span class="link-name">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('profile') }}">
+                        <i class="ri-profile-line"></i>
+                        <span class="link-name">Profile</span>
+                    </a>
+                </li>
+                <li id="features">
+                    <a href="#">
+                        <i class="ri-arrow-right-double-line"></i>
+                        <span class="link-name">Features</span>
+                    </a>
+                    <!-- Menu 2, Option of features -->
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{ url_for('summary') }}">
+                                <i class="ri-file-list-line"></i>
+                                <span class="link-name">Summary</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('sentiment') }}">
+                                <i class="ri-emotion-line"></i>
+                                <span class="link-name">Sentiment</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('page2') }}">
+                                <i class="ri-bar-chart-line"></i>
+                                <span class="link-name">Growth</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('titlepage') }}">
+                                <i class="ri-star-line"></i>
+                                <span class="link-name">Recommend</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="ri-feedback-line"></i>
+                        <span class="link-name">Feedback</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Menu 3, Logout and Dark Mode -->
+            <ul class="logout-Dark-Mode">
+                <li>
+                    <a href="#">
+                        <i class="ri-logout-box-r-line"></i>
+                        <span class="link-name">Logout</span>
+                    </a>
+                </li>
+                <li id="mode-changer">
+                    <a href="#">
+                        <i class="ri-moon-line"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main-content">
+            <h1>YouTube Channel Statistics</h1>
+            <div class="banner">
+                <img src="{{ banner_image }}" alt="Banner Image">
+            </div>
+            <!-- Channel Name Display -->
+            <div class="channel-name">
+                <p>{{ channel_data['Channel_name'] }}</p>
+            </div>
+            <!-- Stats Table with Profile Picture -->
+            <div class="stats-container">
+                <div class="stats_table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Subscribers Count</th>
+                                <th>Views Count</th>
+                                <th>Total Videos</th>
+                                <th>Created Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ channel_data['Subscribers'] }}</td>
+                                <td>{{ channel_data['Views'] }}</td>
+                                <td>{{ channel_data['Total_videos'] }}</td>
+                                <td>{{ channel_data['Created_date'] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="profile-pic">
+                    <img src="{{ profile_pic }}" alt="Profile Picture">
+                </div>
+            </div>
+            <!-- Top 10 Videos Stats -->
+            <h2>Top 10 Videos</h2>
+            <div class="stats_table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Published Date</th>
+                            <th>Views</th>
+                            <th>Likes</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for video in top_videos %}
+                        <tr>
+                            <td>{{ video['Title'] }}</td>
+                            <td>{{ video['Published_date'] }}</td>
+                            <td>{{ video['Views'] }}</td>
+                            <td>{{ video['Likes'] }}</td>
+                            <td>{{ video['Comments'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- Chart for Top 10 Videos by Views -->
+            <div class="chart-container">
+                <h2>Top 10 Videos by Views</h2>
+                <canvas id="top10VideosChart"></canvas>
+            </div>
+            <!-- Chart for Number of Videos per Month -->
+            <div class="chart-container">
+                <h2>Number of Videos per Month</h2>
+                <canvas id="monthlyVideosChart"></canvas>
+            </div>
+        </div>
+        <!-- Sidebar for Recent Videos -->
+        <div class="sidebar">
+            <h2>Recent Videos</h2>
+            <ul>
+                {% for video in recent_videos %}
+                <li>
+                    <img src="{{ video['Thumbnail'] }}" alt="Thumbnail">
+                    <a href="https://www.youtube.com/watch?v={{ video['Video_ID'] }}" target="_blank">{{ video['Title'] }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <!-- JavaScript for Chart.js -->
+    <script type="text/javascript">
+    const top10VideosData = {{ top10_videos_data | tojson | safe }};
+    const monthlyVideosData = {{ monthly_videos_data | tojson | safe }};
+
+    if (top10VideosData && top10VideosData.labels && top10VideosData.data) {
+        const ctxTop10Videos = document.getElementById('top10VideosChart').getContext('2d');
+        new Chart(ctxTop10Videos, {
+            type: 'bar',
+            data: {
+                labels: top10VideosData.labels,
+                datasets: [{
+                    label: 'Views',
+                    data: top10VideosData.data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        align: 'end'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { beginAtZero: true },
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    } else {
+        console.error('Top 10 Videos data is missing or malformed.');
+    }
+
+    if (monthlyVideosData && monthlyVideosData.labels && monthlyVideosData.data) {
+        const ctxMonthlyVideos = document.getElementById('monthlyVideosChart').getContext('2d');
+        new Chart(ctxMonthlyVideos, {
+            type: 'bar',
+            data: {
+                labels: monthlyVideosData.labels,
+                datasets: [{
+                    label: 'Number of Videos',
+                    data: monthlyVideosData.data,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        align: 'end'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { beginAtZero: true },
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    } else {
+        console.error('Monthly Videos data is missing or malformed.');
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+    // Function to enable dark mode
+    function enableDarkMode() {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+    }
+
+    // Function to disable dark mode
+    function disableDarkMode() {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+    }
+
+    // Check for saved dark mode preference in localStorage on page load
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'enabled') {
+        enableDarkMode();  // Apply dark mode if it's enabled
+    }
+
+    // Toggle dark mode when the switch is clicked
+    const darkModeToggle = document.getElementById('mode-changer');
+    darkModeToggle.addEventListener('click', () => {
+        const darkMode = localStorage.getItem('darkMode');
+        if (darkMode !== 'enabled') {
+            enableDarkMode();  // Enable dark mode and save preference
+        } else {
+            disableDarkMode();  // Disable dark mode and save preference
+        }
+    });
+
+    // Features menu toggle
+    const featuresLink = document.querySelector("#features > a");
+    const subMenu = document.querySelector("#features .sub-menu");
+    featuresLink.addEventListener("click", function(event) {
+        event.preventDefault();
+        subMenu.classList.toggle("show");
+    });
+});
+
+    </script>
+</body>
+</html>

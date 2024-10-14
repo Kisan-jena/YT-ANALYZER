@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Section</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+</head>
+<body>
+    <div class="profile-section">
+        <div>
+            <!-- Flash Message Container -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-container">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% endwith %}
+        </div>
+        <!-- Profile Picture Upload -->
+        <form method="POST" enctype="multipart/form-data">
+            <div class="profile-picture">
+                <!-- Profile Image with Camera Icon Overlay -->
+                <button type="button" onclick="document.getElementById('uploadImage').click()" class="upload-button">
+                    <img id="profileImage" src="{{ image_url or url_for('static', filename='default-avatar.png') }}" alt="Profile Image" class="upload-icon">
+                    <div class="camera-icon">
+                        <i class="ri-camera-fill"></i>
+                    </div>
+                </button>
+                <!-- Hidden File Input -->
+                <input type="file" id="uploadImage" name="profile_image" accept="image/*" hidden>
+            </div>
+        
+            <!-- Save Button -->
+            <button type="submit" class="save-button">Save Changes</button>
+
+            <!-- Editable Name -->
+            <div class="editable-field">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{ username }}">
+                <i class="ri-edit-line edit-icon" onclick="enableEditing('name')"></i>
+            </div>
+
+            <!-- Editable Email -->
+            <div class="editable-field">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ email }}">
+                <i class="ri-edit-line edit-icon" onclick="enableEditing('email')"></i>
+            </div>
+        </form>
+
+        <!-- Profile Options -->
+        <div class="profile-options">
+            <ul>
+                <li>
+                    <button onclick="setNewPassword()">Set Password</button>
+                </li>
+                <li>
+                    <button onclick="viewHistory()">History</button>
+                    <button onclick="logout()">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='profile.js') }}"></script>
+</body>
+</html>
