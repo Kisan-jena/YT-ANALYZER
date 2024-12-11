@@ -11,11 +11,14 @@
 
 ## Tech Stack
 
-- **Python**: Main programming language used for backend logic and machine learning.
+- **Python**: Main programming language used for backend logic and model training.
 - **Flask**: Web framework for building the web app and API routes.
-- **TensorFlow / scikit-learn**: For training machine learning models.
+- **Hugging Face Transformers**: Used for the T5 model to generate optimized YouTube titles, and for fine-tuning the model.
+- **Hugging Face Datasets**: Used for loading and preprocessing the training data.
+- **LanguageTool**: Used for grammar checking and correction in the generated titles.
 - **HTML/CSS/JavaScript**: For frontend interface and user interactions.
 - **Jinja2**: Templating engine for rendering HTML in Flask.
+
 
 ## 📖 Usage
 
