@@ -9,6 +9,14 @@
 - Interactive web interface with HTML templates.
 - Scripts for custom analysis.
 
+## Tech Stack
+
+- **Python**: Main programming language used for backend logic and machine learning.
+- **Flask**: Web framework for building the web app and API routes.
+- **TensorFlow / scikit-learn**: For training machine learning models.
+- **HTML/CSS/JavaScript**: For frontend interface and user interactions.
+- **Jinja2**: Templating engine for rendering HTML in Flask.
+
 ## 📖 Usage
 
 1. Clone the repository:
@@ -22,3 +30,4 @@
    ```bash
    python app.py
 4. Open the web app at `http://localhost:5000`.
+
